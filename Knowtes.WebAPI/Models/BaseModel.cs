@@ -1,0 +1,7 @@
+﻿namespace Knowtes.Backend.Models
+{
+    public class BaseModel
+    {
+        public int Id { get; set; }
+    }
+}
