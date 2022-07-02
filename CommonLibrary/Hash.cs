@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CommonLibrary
 {
     public static class Hash
     {
+        /// Статический класс для хеширования строк по протоколу MD5
+        
         public static string GetHash(string input)
         {
 
