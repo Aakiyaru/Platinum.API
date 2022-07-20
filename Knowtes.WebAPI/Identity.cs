@@ -2,19 +2,18 @@
 using System.Linq;
 using Knowtes.Backend.Models;
 using System.Security.Claims;
+using Knowtes.WebAPI.Commands;
 
 namespace CommonLibrary
 {
     public static class Identity
     {
-        // тестовые данные вместо использования базы данных
-        private static List<User> people = new List<User>
-        {
-            new User {email = "JellyBall@mail.ru", login = "eruwe", password = "qweasd123", name = "denis", Id = 1}
-        };
+        private static AuthCommand command = new AuthCommand();
 
         public static ClaimsIdentity GetIdentity(string username, string password)
         {
+            List<User> people = command.Execute(username, password);
+
             User user = people.FirstOrDefault(x => x.login == username && x.password == password);
             if (user != null)
             {
