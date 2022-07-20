@@ -97,8 +97,9 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
-*.dbo
 *.db
+*.dbo
+DataBase.dbo
 
 # Chutzpah Test files
 _Chutzpah*
@@ -364,4 +365,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 Knowtes.WebAPI/AppData/DataBase/DataBase.db
+Knowtes.WebAPI/AppData/DataBase/DataBase.db
+*.db
 Knowtes.WebAPI/AppData/DataBase/DataBase.db
