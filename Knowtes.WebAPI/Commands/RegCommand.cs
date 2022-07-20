@@ -20,6 +20,8 @@ namespace Knowtes.WebAPI.Commands
 
             int check = command.ExecuteNonQuery();
 
+            Dispose();
+
             if (check != 0)
             {
                 return true;
