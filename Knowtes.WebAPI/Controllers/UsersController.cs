@@ -35,7 +35,7 @@ namespace Knowtes.Backend.Controllers
         [Route("auth")]
         public IActionResult Token([FromQuery] string username, [FromQuery] string password)
         {
-            var identity = Identity.GetIdentity(username, password);
+            var identity = Identity.GetIdentity(username, Hash.GetHash(password));
             if (identity == null)
             {
                 return BadRequest(new { errorText = "Invalid username or password." });
