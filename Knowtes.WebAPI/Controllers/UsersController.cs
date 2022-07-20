@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using CommonLibrary;
+﻿using CommonLibrary;
 using Knowtes.Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using Knowtes.WebAPI.AppData;
 
 namespace Knowtes.Backend.Controllers
@@ -27,17 +24,11 @@ namespace Knowtes.Backend.Controllers
             return Ok(password);
         }
 
-        // тестовые данные вместо использования базы данных
-        private List<User> people = new List<User>
-        {
-            new User {email = "JellyBall@mail.ru", login = "eruwe", password = "qweasd123", name = "denis", Id = 1}
-        };
-
         [HttpPost]
         [Route("auth")]
         public IActionResult Token([FromQuery] string username, [FromQuery] string password)
         {
-            var identity = GetIdentity(username, password);
+            var identity = Identity.GetIdentity(username, password);
             if (identity == null)
             {
                 return BadRequest(new { errorText = "Invalid username or password." });
@@ -61,25 +52,6 @@ namespace Knowtes.Backend.Controllers
             };
 
             return Ok(response);
-        }
-
-        private ClaimsIdentity GetIdentity(string username, string password)
-        {
-            User user = people.FirstOrDefault(x => x.login == username && x.password == password);
-            if (user != null)
-            {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.login)
-                };
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
-            }
-
-            // если пользователя не найдено
-            return null;
         }
     }
 }
