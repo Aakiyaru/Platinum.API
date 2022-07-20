@@ -13,9 +13,5 @@
     <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Querries\" />
-  </ItemGroup>
-
 
 </Project>

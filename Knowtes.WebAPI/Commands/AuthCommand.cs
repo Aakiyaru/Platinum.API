@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Knowtes.Backend.Models;
 using System.Data.SQLite;
+using Knowtes.WebAPI.Querries;
 
 namespace Knowtes.WebAPI.Commands
 {
@@ -12,7 +13,8 @@ namespace Knowtes.WebAPI.Commands
     {
         public List<User> Execute(string login, string password)
         {
-            string commandText = $"SELECT email, login, password, name, id FROM USERS WHERE Login = '{login}' AND Password = '{password}'";
+            AuthQuerry.Set(login, password);
+            string commandText = AuthQuerry.GetText();
 
             List<User> answer = new List<User>();
 
