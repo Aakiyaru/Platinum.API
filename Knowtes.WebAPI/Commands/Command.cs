@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.SQLite;
-using System.IO;
+﻿using System.Data.SQLite;
 
 namespace Knowtes.WebAPI.Commands
 {
@@ -21,7 +19,6 @@ namespace Knowtes.WebAPI.Commands
         {
             command.Dispose();
             connection.Close();
-            connection.Dispose();
         }
     }
 }
