@@ -6,14 +6,14 @@ namespace Knowtes.WebAPI.Commands
 {
     public abstract class Command
     {
-        private static string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"AppData\DataBase", "DataBase.db");
-        private static SQLiteConnection connection = new SQLiteConnection($@"Data Source={filePath}; Version=3");
-        private SQLiteCommand command;
+        protected static string filePath = @"..\Knowtes.WebAPI\AppData\DataBase\DataBase.db";
+        protected static SQLiteConnection connection = new SQLiteConnection($@"Data Source={filePath}; Version=3");
+        protected static SQLiteCommand command;
 
         protected void Create(string commandText)
         {
-            command = connection.CreateCommand();
             connection.Open();
+            command = connection.CreateCommand();
             command.CommandText = commandText;
         }
 
