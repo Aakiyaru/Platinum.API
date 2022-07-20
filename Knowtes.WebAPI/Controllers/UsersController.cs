@@ -5,6 +5,7 @@ using System;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Knowtes.WebAPI.AppData;
+using Knowtes.WebAPI.Commands;
 
 namespace Knowtes.Backend.Controllers
 {
@@ -16,12 +17,18 @@ namespace Knowtes.Backend.Controllers
         [Route("reg")]
         public IActionResult Reg([FromBody] User regData)
         {
-            string name = regData.name;
-            string login = regData.login;
-            string email = regData.email;
-            string password = Hash.GetHash(regData.password);
+            regData.password = Hash.GetHash(regData.password);
 
-            return Ok(password);
+            RegCommand command = new RegCommand();
+
+            if (command.Execute(regData))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
