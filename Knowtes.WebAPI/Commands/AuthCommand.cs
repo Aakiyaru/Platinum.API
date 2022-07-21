@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Knowtes.Backend.Models;
 using System.Data.SQLite;
 using Knowtes.WebAPI.Querries;

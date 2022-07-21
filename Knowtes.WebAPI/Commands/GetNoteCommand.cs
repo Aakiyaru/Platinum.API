@@ -24,7 +24,7 @@ namespace Knowtes.WebAPI.Commands
 
             while (reader.Read())
             {
-                note = new Note { Id = reader.GetInt32(0), Creator = reader.GetString(1), Text = reader.GetString(2), CreationDate = reader.GetDateTime(3) };
+                note = new Note { Id = reader.GetInt32(0), Creator = reader.GetString(1), Text = reader.GetString(2), CreationDate = Convert.ToDateTime(reader.GetString(3)) };
             }
 
             reader.Close();

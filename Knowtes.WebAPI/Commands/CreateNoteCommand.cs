@@ -1,14 +1,14 @@
-﻿using Knowtes.Backend.Models;
+﻿using Knowtes.WebAPI.Models;
 using Knowtes.WebAPI.Querries;
 
 namespace Knowtes.WebAPI.Commands
 {
-    public class RegCommand : Command
+    public class CreateNoteCommand : Command
     {
-        public bool Execute(User regData)
+        public bool Execute(Note note)
         {
-            RegQuerry.Set(regData.name, regData.login, regData.password, regData.email);
-            string commandText = RegQuerry.GetText();
+            CreateNoteQuerry.Set(note.Creator, note.Text, note.CreationDate);
+            string commandText = CreateNoteQuerry.GetText();
 
             Create(commandText);
 
@@ -16,7 +16,7 @@ namespace Knowtes.WebAPI.Commands
 
             Dispose();
 
-            if (check != 0)
+            if (check == 1)
             {
                 return true;
             }
