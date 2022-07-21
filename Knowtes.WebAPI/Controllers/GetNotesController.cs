@@ -22,5 +22,15 @@ namespace Knowtes.WebAPI.Controllers
             List<Note> notes = command.Execute(User.Identity.Name);
             return Ok(notes);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        [Authorize]
+        public IActionResult Get(int id)
+        {
+            GetNoteCommand command = new GetNoteCommand();
+            Note note = command.Execute(User.Identity.Name, id);
+            return Ok(note);
+        }
     }
 }
