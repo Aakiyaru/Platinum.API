@@ -24,5 +24,41 @@ namespace Platinum.WebAPI.Controllers
             List<Game> games = command.Execute();
             return Ok(games);
         }
+
+        //TODO: - Метод Get one
+
+        //[HttpGet]
+        //[Route("{id}")]
+        //[Authorize]
+        //public IActionResult Get(int id)
+        //{
+        //    GetNoteCommand command = new GetNoteCommand();
+        //    Note note = command.Execute(User.Identity.Name, id);
+        //    return Ok(note);
+        //}
+
+        //TODO: - Метод Delete
+
+        //TODO: - Метод Post
+
+        //[HttpPost]
+        //[Authorize]
+        //public IActionResult Create([FromBody] Note note)
+        //{
+        //    CreateNoteCommand command = new CreateNoteCommand();
+
+        //    note.Creator = User.Identity.Name;
+
+        //    if (command.Execute(note))
+        //    {
+        //        return Ok();
+        //    }
+        //    else
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
+
+        //TODO: - Метод Update
     }
 }

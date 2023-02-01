@@ -9,7 +9,6 @@ namespace Platinum.WebAPI.Models
 {
     public class Game : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Developer { get; set; }
         public string Publisher { get; set; }
