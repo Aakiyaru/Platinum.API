@@ -16,6 +16,7 @@ namespace Platinum.WebAPI.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
+        //вывод списка игр
         [HttpGet]
         //[Authorize]
         public IActionResult GetAll()
@@ -25,6 +26,7 @@ namespace Platinum.WebAPI.Controllers
             return Ok(games);
         }
 
+        //вывод данных по одной игре
         [HttpGet]
         [Route("{id}")]
         //[Authorize]
@@ -35,25 +37,23 @@ namespace Platinum.WebAPI.Controllers
             return Ok(game);
         }
 
-        //[HttpPost]
+        //добавление данных об игре
+        [HttpPost]
         //[Authorize]
-        //public IActionResult Create([FromBody] Note note)
-        //{
-        //    CreateNoteCommand command = new CreateNoteCommand();
+        public IActionResult Create([FromBody] Game game)
+        {
+            CreateGameCommand command = new CreateGameCommand();
 
-        //    note.Creator = User.Identity.Name;
+            if (command.Execute(game))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
 
-        //    if (command.Execute(note))
-        //    {
-        //        return Ok();
-        //    }
-        //    else
-        //    {
-        //        return BadRequest();
-        //    }
-        //}
-
-        //TODO: - Метод Get one
         //TODO: - Метод Post
         //TODO: - Метод Update
         //TODO: - Метод Delete

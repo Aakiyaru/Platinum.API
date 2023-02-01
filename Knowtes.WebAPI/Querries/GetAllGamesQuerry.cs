@@ -11,7 +11,7 @@ namespace Platinum.WebAPI.Querries
     {
         public static void Set()
         {
-            querryText = $"SELECT Name, Developer, Publisher, Realese, Cover, Id FROM Games;";
+            querryText = $"SELECT Name, Developer, Publisher, Realease, Cover, Id FROM Games;";
         }
     }
 }

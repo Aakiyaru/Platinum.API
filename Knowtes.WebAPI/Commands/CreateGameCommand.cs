@@ -1,14 +1,15 @@
 ﻿using Knowtes.WebAPI.Models;
 using Knowtes.WebAPI.Querries;
+using Platinum.WebAPI.Models;
 
 namespace Knowtes.WebAPI.Commands
 {
-    public class CreateNoteCommand : Command
+    public class CreateGameCommand : Command
     {
-        public bool Execute(Note note)
+        public bool Execute(Game game)
         {
-            CreateNoteQuerry.Set(note.Creator, note.Text, note.CreationDate);
-            string commandText = CreateNoteQuerry.GetText();
+            CreateGameQuerry.Set(game.Name, game.Developer, game.Publisher, game.Realease, game.Cover);
+            string commandText = CreateGameQuerry.GetText();
 
             Create(commandText);
 
