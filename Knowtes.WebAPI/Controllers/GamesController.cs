@@ -25,21 +25,15 @@ namespace Platinum.WebAPI.Controllers
             return Ok(games);
         }
 
-        //TODO: - Метод Get one
-
-        //[HttpGet]
-        //[Route("{id}")]
+        [HttpGet]
+        [Route("{id}")]
         //[Authorize]
-        //public IActionResult Get(int id)
-        //{
-        //    GetNoteCommand command = new GetNoteCommand();
-        //    Note note = command.Execute(User.Identity.Name, id);
-        //    return Ok(note);
-        //}
-
-        //TODO: - Метод Delete
-
-        //TODO: - Метод Post
+        public IActionResult Get(int id)
+        {
+            GetGameCommand command = new GetGameCommand();
+            Game game = command.Execute(id);
+            return Ok(game);
+        }
 
         //[HttpPost]
         //[Authorize]
@@ -59,6 +53,9 @@ namespace Platinum.WebAPI.Controllers
         //    }
         //}
 
+        //TODO: - Метод Get one
+        //TODO: - Метод Post
         //TODO: - Метод Update
+        //TODO: - Метод Delete
     }
 }
