@@ -4,7 +4,7 @@
     {
         public static void Set(string login, string password)
         {
-            querryText = $"SELECT email, login, password, name, id FROM USERS WHERE Login = '{login}' AND Password = '{password}'";
+            querryText = $"SELECT login, password, username, id FROM USERS WHERE Login = '{login}' AND Password = '{password}'";
         }
     }
 }

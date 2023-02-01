@@ -2,9 +2,9 @@
 {
     public class RegQuerry : Querry
     {
-        public static void Set(string name, string login, string password, string email)
+        public static void Set(string login, string password, string username)
         {
-            querryText = $"INSERT OR IGNORE INTO USERS (name, login, password, email) VALUES ('{name}', '{login}', '{password}', '{email}')";
+            querryText = $"INSERT OR IGNORE INTO USERS (login, password, username) VALUES ('{login}', '{password}', '{username}')";
         }
     }
 }

@@ -18,9 +18,9 @@ namespace Knowtes.WebAPI.Commands
 
             SQLiteDataReader reader = command.ExecuteReader();
 
-            while(reader.Read())
+            while (reader.Read())
             {
-                answer.Add(new User { email = reader.GetString(0), login = reader.GetString(1), password = reader.GetString(2), name = reader.GetString(3), Id = reader.GetInt32(4) });
+                answer.Add(new User { login = reader.GetString(0), password = reader.GetString(1), username = reader.GetString(2), Id = reader.GetInt32(3) });
             }
 
             reader.Close();

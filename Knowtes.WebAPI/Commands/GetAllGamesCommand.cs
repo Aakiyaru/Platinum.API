@@ -1,13 +1,8 @@
 ﻿using Knowtes.WebAPI.Commands;
-using Knowtes.WebAPI.Models;
 using Platinum.WebAPI.Models;
 using Platinum.WebAPI.Querries;
-using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Platinum.WebAPI.Commands
 {

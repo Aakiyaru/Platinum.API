@@ -1,14 +1,8 @@
 ﻿using Knowtes.WebAPI.Commands;
-using Knowtes.WebAPI.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Platinum.WebAPI.Commands;
 using Platinum.WebAPI.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Platinum.WebAPI.Controllers
 {
@@ -54,7 +48,6 @@ namespace Platinum.WebAPI.Controllers
             }
         }
 
-        //TODO: - Метод Post
         //TODO: - Метод Update
         //TODO: - Метод Delete
     }

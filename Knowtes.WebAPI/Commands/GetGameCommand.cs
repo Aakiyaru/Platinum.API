@@ -1,6 +1,4 @@
-﻿using System;
-using Knowtes.WebAPI.Models;
-using Knowtes.WebAPI.Querries;
+﻿using Knowtes.WebAPI.Querries;
 using System.Data.SQLite;
 using Platinum.WebAPI.Models;
 

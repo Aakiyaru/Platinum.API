@@ -33,12 +33,12 @@ namespace Knowtes.Backend.Controllers
 
         [HttpPost]
         [Route("auth")]
-        public IActionResult Token([FromQuery] string username, [FromQuery] string password)
+        public IActionResult Token([FromQuery] string login, [FromQuery] string password)
         {
-            var identity = Identity.GetIdentity(username, Hash.GetHash(password));
+            var identity = Identity.GetIdentity(login, Hash.GetHash(password));
             if (identity == null)
             {
-                return BadRequest(new { errorText = "Invalid username or password." });
+                return BadRequest(new { errorText = "Invalid login or password." });
             }
 
             var now = DateTime.UtcNow;

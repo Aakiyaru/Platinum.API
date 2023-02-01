@@ -1,5 +1,4 @@
-﻿using Knowtes.WebAPI.Models;
-using Knowtes.WebAPI.Querries;
+﻿using Knowtes.WebAPI.Querries;
 using Platinum.WebAPI.Models;
 
 namespace Knowtes.WebAPI.Commands

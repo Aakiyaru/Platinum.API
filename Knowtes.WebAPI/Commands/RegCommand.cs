@@ -7,7 +7,7 @@ namespace Knowtes.WebAPI.Commands
     {
         public bool Execute(User regData)
         {
-            RegQuerry.Set(regData.name, regData.login, regData.password, regData.email);
+            RegQuerry.Set(regData.login, regData.password, regData.username);
             string commandText = RegQuerry.GetText();
 
             Create(commandText);
