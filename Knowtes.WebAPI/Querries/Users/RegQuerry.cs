@@ -1,4 +1,6 @@
-﻿namespace Knowtes.WebAPI.Querries
+﻿using Knowtes.WebAPI.Querries;
+
+namespace Platinum.WebAPI.Querries.Users
 {
     public class RegQuerry : Querry
     {

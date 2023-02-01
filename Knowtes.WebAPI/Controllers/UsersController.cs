@@ -5,7 +5,7 @@ using System;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Knowtes.WebAPI.AppData;
-using Knowtes.WebAPI.Commands;
+using Platinum.WebAPI.Commands.Users;
 
 namespace Knowtes.Backend.Controllers
 {

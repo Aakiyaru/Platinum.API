@@ -2,7 +2,7 @@
 using System.Linq;
 using Knowtes.Backend.Models;
 using System.Security.Claims;
-using Knowtes.WebAPI.Commands;
+using Platinum.WebAPI.Commands.Users;
 
 namespace CommonLibrary
 {

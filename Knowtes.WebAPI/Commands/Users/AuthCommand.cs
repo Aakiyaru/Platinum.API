@@ -2,8 +2,10 @@
 using Knowtes.Backend.Models;
 using System.Data.SQLite;
 using Knowtes.WebAPI.Querries;
+using Knowtes.WebAPI.Commands;
+using Platinum.WebAPI.Querries.Users;
 
-namespace Knowtes.WebAPI.Commands
+namespace Platinum.WebAPI.Commands.Users
 {
     public class AuthCommand : Command
     {

@@ -1,6 +1,7 @@
 ﻿using System;
+using Knowtes.WebAPI.Querries;
 
-namespace Knowtes.WebAPI.Querries
+namespace Platinum.WebAPI.Querries.Games
 {
     public class CreateGameQuerry : Querry
     {

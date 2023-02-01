@@ -1,7 +1,9 @@
-﻿using Knowtes.WebAPI.Querries;
+﻿using Knowtes.WebAPI.Commands;
+using Knowtes.WebAPI.Querries;
 using Platinum.WebAPI.Models;
+using Platinum.WebAPI.Querries.Games;
 
-namespace Knowtes.WebAPI.Commands
+namespace Platinum.WebAPI.Commands.Games
 {
     public class CreateGameCommand : Command
     {

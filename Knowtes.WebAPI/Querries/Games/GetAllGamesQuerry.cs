@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Platinum.WebAPI.Querries
+namespace Platinum.WebAPI.Querries.Games
 {
     public class GetAllGamesQuerry : Querry
     {

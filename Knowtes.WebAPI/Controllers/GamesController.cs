@@ -1,6 +1,5 @@
-﻿using Knowtes.WebAPI.Commands;
-using Microsoft.AspNetCore.Mvc;
-using Platinum.WebAPI.Commands;
+﻿using Microsoft.AspNetCore.Mvc;
+using Platinum.WebAPI.Commands.Games;
 using Platinum.WebAPI.Models;
 using System.Collections.Generic;
 

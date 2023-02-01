@@ -1,15 +1,16 @@
-﻿using Knowtes.WebAPI.Querries;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
+using Knowtes.WebAPI.Commands;
 using Platinum.WebAPI.Models;
+using Platinum.WebAPI.Querries.Games;
 
-namespace Knowtes.WebAPI.Commands
+namespace Platinum.WebAPI.Commands.Games
 {
     public class GetGameCommand : Command
     {
         public Game Execute(int id)
         {
             GetGameQuerry.Set(id);
-            string commandText = GetGameQuerry.GetText();
+            string commandText = Knowtes.WebAPI.Querries.Querry.GetText();
 
             Create(commandText);
 
