@@ -2,7 +2,7 @@
 using System.Linq;
 using Knowtes.Backend.Models;
 using System.Security.Claims;
-using Knowtes.WebAPI.Commands;
+using Platinum.WebAPI.Commands.Users;
 
 namespace CommonLibrary
 {
@@ -10,11 +10,11 @@ namespace CommonLibrary
     {
         private static AuthCommand command = new AuthCommand();
 
-        public static ClaimsIdentity GetIdentity(string username, string password)
+        public static ClaimsIdentity GetIdentity(string login, string password)
         {
-            List<User> people = command.Execute(username, password);
+            List<User> people = command.Execute(login, password);
 
-            User user = people.FirstOrDefault(x => x.login == username && x.password == password);
+            User user = people.FirstOrDefault(x => x.login == login && x.password == password);
             if (user != null)
             {
                 var claims = new List<Claim>

@@ -5,7 +5,7 @@ using System;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Knowtes.WebAPI.AppData;
-using Knowtes.WebAPI.Commands;
+using Platinum.WebAPI.Commands.Users;
 
 namespace Knowtes.Backend.Controllers
 {
@@ -33,22 +33,22 @@ namespace Knowtes.Backend.Controllers
 
         [HttpPost]
         [Route("auth")]
-        public IActionResult Token([FromQuery] string username, [FromQuery] string password)
+        public IActionResult Token([FromQuery] string login, [FromQuery] string password)
         {
-            var identity = Identity.GetIdentity(username, Hash.GetHash(password));
+            var identity = Identity.GetIdentity(login, Hash.GetHash(password));
             if (identity == null)
             {
-                return BadRequest(new { errorText = "Invalid username or password." });
+                return BadRequest(new { errorText = "Invalid login or password." });
             }
 
             var now = DateTime.UtcNow;
             // создаем JWT-токен
             var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
+                    issuer: AuthOptions.Issuer,
+                    audience: AuthOptions.Audience,
                     notBefore: now,
                     claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.Lifetime)),
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 

@@ -1,14 +1,15 @@
 ﻿using Knowtes.Backend.Models;
-using Knowtes.WebAPI.Querries;
+using Knowtes.WebAPI.Commands;
+using Platinum.WebAPI.Querries.Users;
 
-namespace Knowtes.WebAPI.Commands
+namespace Platinum.WebAPI.Commands.Users
 {
     public class RegCommand : Command
     {
         public bool Execute(User regData)
         {
-            RegQuerry.Set(regData.name, regData.login, regData.password, regData.email);
-            string commandText = RegQuerry.GetText();
+            RegQuerry.Set(regData.login, regData.password, regData.username);
+            string commandText = Knowtes.WebAPI.Querries.Querry.GetText();
 
             Create(commandText);
 
