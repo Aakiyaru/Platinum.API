@@ -12,7 +12,7 @@ namespace Platinum.WebAPI.Controllers
         //вывод списка игр
         [HttpGet]
         //[Authorize]
-        public IActionResult GetAll()
+        public IActionResult GetList()
         {
             GetAllGamesCommand command = new GetAllGamesCommand();
             List<Game> games = command.Execute();
@@ -26,14 +26,14 @@ namespace Platinum.WebAPI.Controllers
         public IActionResult Get(int id)
         {
             GetGameCommand command = new GetGameCommand();
-            Game game = command.Execute(id);
+            GameInfo game = command.Execute(id);
             return Ok(game);
         }
 
         //добавление данных об игре
         [HttpPost]
         //[Authorize]
-        public IActionResult Create([FromBody] Game game)
+        public IActionResult Create([FromBody] GameInfo game)
         {
             CreateGameCommand command = new CreateGameCommand();
 

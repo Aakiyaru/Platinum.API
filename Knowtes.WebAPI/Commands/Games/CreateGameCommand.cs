@@ -7,7 +7,7 @@ namespace Platinum.WebAPI.Commands.Games
 {
     public class CreateGameCommand : Command
     {
-        public bool Execute(Game game)
+        public bool Execute(GameInfo game)
         {
             CreateGameQuerry.Set(game.Name, game.Developer, game.Publisher, game.Realease, game.Cover);
             string commandText = CreateGameQuerry.GetText();

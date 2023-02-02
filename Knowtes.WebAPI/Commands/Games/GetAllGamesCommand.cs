@@ -21,7 +21,7 @@ namespace Platinum.WebAPI.Commands.Games
 
             while (reader.Read())
             {
-                games.Add(new Game { Id = reader.GetInt32(5), Name = reader.GetString(0), Developer = reader.GetString(1), Publisher = reader.GetString(2), Realease = reader.GetString(3), Cover = reader.GetString(4) });
+                games.Add(new Game { Id = reader.GetInt32(2), Name = reader.GetString(0), Cover = reader.GetString(1) });
             }
 
             reader.Close();

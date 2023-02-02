@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Platinum.WebAPI.Models
 {
-    public class Game : BaseModel
+    public class GameInfo : Game
     {
-        public string Name { get; set; }
-        public string Cover { get; set; }
-
+        public string Developer { get; set; }
+        public string Publisher { get; set; }
+        public string Realease { get; set; }
     }
 }
