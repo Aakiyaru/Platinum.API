@@ -30,6 +30,17 @@ namespace Platinum.WebAPI.Controllers
             return Ok(game);
         }
 
+        //поиск
+        [HttpGet]
+        [Route("search")]
+        //[Authorize]
+        public IActionResult Search([FromQuery] string searchString)
+        {
+            SearchGameCommand command = new SearchGameCommand();
+            List<Game> games = command.Execute(searchString);
+            return Ok(games);
+        }
+
         //добавление данных об игре
         [HttpPost]
         //[Authorize]
