@@ -29,7 +29,7 @@ namespace Platinum.WebAPI.Commands.Achivements
 
                 while (reader.Read())
                 {
-                    achivements.Add(new Achivement { Id = reader.GetInt64(0), Name = reader.GetString(1), Description = reader.GetString(2), GameId = reader.GetInt64(3), Icon = reader.GetString(4) });
+                    achivements.Add(new Achivement { Id = reader.GetInt32(0), Name = reader.GetString(1), Description = reader.GetString(2), GameId = reader.GetInt32(3), Icon = reader.GetString(4) });
                 }
 
                 reader.Close();

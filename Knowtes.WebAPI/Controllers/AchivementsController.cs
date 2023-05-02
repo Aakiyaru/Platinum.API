@@ -20,8 +20,8 @@ namespace Platinum.WebAPI.Controllers
         public IActionResult GetAll([FromQuery] int gameId)
         {
             GetAllAchivementsCommand command = new GetAllAchivementsCommand();
-            List<Achivement> games = command.Execute(gameId);
-            return Ok(games);
+            List<Achivement> achivement = command.Execute(gameId);
+            return Ok(achivement);
         }
 
         [HttpGet]
