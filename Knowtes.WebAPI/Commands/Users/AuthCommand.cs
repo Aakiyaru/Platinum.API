@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using Knowtes.WebAPI.Querries;
 using Knowtes.WebAPI.Commands;
 using Platinum.WebAPI.Querries.Users;
+using System.Data.SqlClient;
 
 namespace Platinum.WebAPI.Commands.Users
 {
@@ -18,7 +19,7 @@ namespace Platinum.WebAPI.Commands.Users
 
             Create(commandText);
 
-            SQLiteDataReader reader = command.ExecuteReader();
+            SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {

@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System.Data.SqlClient;
+using System.Data.SQLite;
 using Knowtes.WebAPI.Commands;
 using Platinum.WebAPI.Models;
 using Platinum.WebAPI.Querries.Games;
@@ -14,7 +15,7 @@ namespace Platinum.WebAPI.Commands.Games
 
             Create(commandText);
 
-            SQLiteDataReader reader = command.ExecuteReader();
+            SqlDataReader reader = command.ExecuteReader();
 
             GameInfo game = new GameInfo();
 

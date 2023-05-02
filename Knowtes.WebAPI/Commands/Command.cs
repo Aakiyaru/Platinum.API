@@ -1,12 +1,13 @@
-﻿using System.Data.SQLite;
+﻿using System.Configuration;
+using System.Data.SqlClient;
+using System.Data.SQLite;
 
 namespace Knowtes.WebAPI.Commands
 {
     public abstract class Command
     {
-        protected static string filePath = @"..\Knowtes.WebAPI\AppData\DataBase\DataBase.db";
-        protected static SQLiteConnection connection = new SQLiteConnection($@"Data Source={filePath}; Version=3");
-        protected static SQLiteCommand command;
+        protected static SqlConnection connection = new SqlConnection("Data Source=SQL6029.site4now.net;Initial Catalog=db_a9882b_database;User Id=db_a9882b_database_admin;Password=qweasd123");
+        protected static SqlCommand command;
 
         protected void Create(string commandText)
         {

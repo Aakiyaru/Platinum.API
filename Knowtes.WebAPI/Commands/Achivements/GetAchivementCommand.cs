@@ -4,6 +4,7 @@ using Platinum.WebAPI.Querries.Achivements;
 using Platinum.WebAPI.Querries.Games;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -20,17 +21,25 @@ namespace Platinum.WebAPI.Commands.Achivements
 
             Create(commandText);
 
-            SQLiteDataReader reader = command.ExecuteReader();
-
             Achivement achivement = new Achivement();
 
-            while (reader.Read())
+            try
             {
-                achivement = new Achivement { Id = reader.GetInt32(0), Name = reader.GetString(1), Description = reader.GetString(2), GameId = reader.GetInt32(3), Icon = reader.GetString(4) };
-            }
+                SqlDataReader reader = command.ExecuteReader();
 
-            reader.Close();
-            Dispose();
+                while (reader.Read())
+                {
+                    achivement = new Achivement { Id = reader.GetInt32(0), Name = reader.GetString(1), Description = reader.GetString(2), GameId = reader.GetInt32(3), Icon = reader.GetString(4) };
+                }
+
+                reader.Close();
+                Dispose();
+            }
+            catch
+            {
+                Dispose();
+            }
+            
 
             return achivement;
         }

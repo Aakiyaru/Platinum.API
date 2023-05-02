@@ -3,6 +3,7 @@ using Platinum.WebAPI.Models;
 using Platinum.WebAPI.Querries.Games;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Platinum.WebAPI.Commands.Games
 
             Create(commandText);
 
-            SQLiteDataReader reader = command.ExecuteReader();
+            SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {

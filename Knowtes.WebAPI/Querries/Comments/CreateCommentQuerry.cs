@@ -9,7 +9,7 @@ namespace Platinum.WebAPI.Querries.Comments
 {
     public class CreateCommentQuerry : Querry
     {
-        public static void Set(int UserId, string Text, int AchivementId)
+        public static void Set(long UserId, string Text, long AchivementId)
         {
             querryText = $"INSERT INTO Comments (UserId, Text, AchivementId) VALUES ('{UserId}','{Text}','{AchivementId}')";
         }
