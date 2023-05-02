@@ -23,14 +23,22 @@ namespace Platinum.WebAPI.Commands.Achivements
 
             Create(commandText);
 
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                achivements.Add(new Achivement { Id = reader.GetInt64(0), Name = reader.GetString(1), Description = reader.GetString(2), GameId = reader.GetInt64(3), Icon = reader.GetString(4) });
-            }
+                SqlDataReader reader = command.ExecuteReader();
 
-            reader.Close();
+                while (reader.Read())
+                {
+                    achivements.Add(new Achivement { Id = reader.GetInt64(0), Name = reader.GetString(1), Description = reader.GetString(2), GameId = reader.GetInt64(3), Icon = reader.GetString(4) });
+                }
+
+                reader.Close();
+            }
+            catch
+            {
+                Dispose();
+            }
+            
             Dispose();
 
             return achivements;

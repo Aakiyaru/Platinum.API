@@ -19,14 +19,21 @@ namespace Platinum.WebAPI.Commands.Users
 
             Create(commandText);
 
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                answer.Add(new User { login = reader.GetString(0), password = reader.GetString(1), username = reader.GetString(2), Id = reader.GetInt32(3) });
-            }
+                SqlDataReader reader = command.ExecuteReader();
 
-            reader.Close();
+                while (reader.Read())
+                {
+                    answer.Add(new User { login = reader.GetString(0), password = reader.GetString(1), username = reader.GetString(2), Id = reader.GetInt32(3) });
+                }
+
+                reader.Close();
+            }
+            catch
+            {
+                Dispose();
+            }
 
             Dispose();
 

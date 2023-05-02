@@ -23,14 +23,22 @@ namespace Platinum.WebAPI.Commands.Comments
 
             Create(commandText);
 
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                comments.Add(new Comment { Id = reader.GetInt32(0), UserId = reader.GetInt32(1), Text = reader.GetString(2)});
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    comments.Add(new Comment { Id = reader.GetInt32(0), UserId = reader.GetInt32(1), Text = reader.GetString(2) });
+                }
+
+                reader.Close();
+            }
+            catch
+            {
+                Dispose();
             }
 
-            reader.Close();
             Dispose();
 
             return comments;
