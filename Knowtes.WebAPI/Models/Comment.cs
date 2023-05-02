@@ -9,8 +9,8 @@ namespace Platinum.WebAPI.Models
 {
     public class Comment : BaseModel
     {
-        public int UserId { get; set; }
+        public long UserId { get; set; }
         public string Text { get; set; }
-        public int AchivementId { get; set; }
+        public long AchivementId { get; set; }
     }
 }

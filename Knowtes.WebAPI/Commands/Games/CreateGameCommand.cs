@@ -13,9 +13,17 @@ namespace Platinum.WebAPI.Commands.Games
             string commandText = CreateGameQuerry.GetText();
 
             Create(commandText);
+            int check = 0;
 
-            int check = command.ExecuteNonQuery();
-
+            try
+            {
+                check = command.ExecuteNonQuery();
+            }
+            catch
+            {
+                Dispose();
+            }
+            
             Dispose();
 
             if (check == 1)

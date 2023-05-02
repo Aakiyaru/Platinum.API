@@ -12,9 +12,17 @@ namespace Platinum.WebAPI.Commands.Users
             string commandText = Knowtes.WebAPI.Querries.Querry.GetText();
 
             Create(commandText);
+            int check = 0;
 
-            int check = command.ExecuteNonQuery();
-
+            try
+            {
+                check = command.ExecuteNonQuery();
+            }
+            catch
+            {
+                Dispose();
+            }
+            
             Dispose();
 
             if (check != 0)

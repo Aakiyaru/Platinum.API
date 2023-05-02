@@ -4,6 +4,7 @@ using Platinum.WebAPI.Querries.Comments;
 using Platinum.WebAPI.Querries.Games;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -22,14 +23,22 @@ namespace Platinum.WebAPI.Commands.Comments
 
             Create(commandText);
 
-            SQLiteDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                comments.Add(new Comment { Id = reader.GetInt32(0), UserId = reader.GetInt32(1), Text = reader.GetString(2)});
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    comments.Add(new Comment { Id = reader.GetInt32(0), UserId = reader.GetInt32(1), Text = reader.GetString(2) });
+                }
+
+                reader.Close();
+            }
+            catch
+            {
+                Dispose();
             }
 
-            reader.Close();
             Dispose();
 
             return comments;

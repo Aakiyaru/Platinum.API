@@ -18,8 +18,16 @@ namespace Platinum.WebAPI.Commands.Comments
             string commandText = CreateCommentQuerry.GetText();
 
             Create(commandText);
+            int check = 0;
 
-            int check = command.ExecuteNonQuery();
+            try
+            {
+                check = command.ExecuteNonQuery();
+            }
+            catch
+            {
+                Dispose();
+            }
 
             Dispose();
 
