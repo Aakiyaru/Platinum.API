@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Platinum.WebAPI.Commands.Comments;
-using Platinum.WebAPI.Commands.Games;
 using Platinum.WebAPI.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Platinum.WebAPI.Controllers
 {
@@ -19,9 +14,20 @@ namespace Platinum.WebAPI.Controllers
         //[Authorize]
         public IActionResult GetComments([FromQuery] int AchivementId)
         {
-            GetCommentsCommand command = new GetCommentsCommand();
-            List<Comment> comments = command.Execute(AchivementId);
-            return Ok(comments);
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    List<Comment> coms = (from ach in db.Comments
+                                              where ach.AchivementId == AchivementId
+                                              select ach).ToList();
+                    return Ok(coms);
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         //добавление данных об игре
@@ -29,13 +35,16 @@ namespace Platinum.WebAPI.Controllers
         //[Authorize]
         public IActionResult Create([FromBody] Comment comment)
         {
-            CreateCommentCommand command = new CreateCommentCommand();
-
-            if (command.Execute(comment))
+            try
             {
-                return Ok();
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Comments.Add(comment);
+                    db.SaveChanges();
+                    return Ok();
+                }
             }
-            else
+            catch
             {
                 return BadRequest();
             }

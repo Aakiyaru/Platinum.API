@@ -1,13 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Platinum.WebAPI.Commands.Achivements;
-using Platinum.WebAPI.Commands.Games;
+﻿using Microsoft.AspNetCore.Mvc;
 using Platinum.WebAPI.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Platinum.WebAPI.Controllers
 {
@@ -19,9 +13,20 @@ namespace Platinum.WebAPI.Controllers
         //[Authorize]
         public IActionResult GetAll([FromQuery] int gameId)
         {
-            GetAllAchivementsCommand command = new GetAllAchivementsCommand();
-            List<Achivement> achivement = command.Execute(gameId);
-            return Ok(achivement);
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    List<Achivement> achivements = (from ach in db.Achivements
+                                                    where ach.GameId == gameId
+                                                    select ach).ToList();
+                    return Ok(achivements);
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]
@@ -29,9 +34,20 @@ namespace Platinum.WebAPI.Controllers
         //[Authorize]
         public IActionResult Get([FromQuery]int id, [FromQuery] int gameId)
         {
-            GetAchivementCommand command = new GetAchivementCommand();
-            Achivement achivement = command.Execute(id, gameId);
-            return Ok(achivement);
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    Achivement achive = (from ach in db.Achivements
+                                         where ach.GameId == gameId && ach.Id == id
+                                         select ach).FirstOrDefault();
+                    return Ok(achive);
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }

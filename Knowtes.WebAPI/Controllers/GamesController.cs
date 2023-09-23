@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Platinum.WebAPI.Commands.Games;
 using Platinum.WebAPI.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Platinum.WebAPI.Controllers
 {
@@ -14,9 +14,18 @@ namespace Platinum.WebAPI.Controllers
         //[Authorize]
         public IActionResult GetList()
         {
-            GetAllGamesCommand command = new GetAllGamesCommand();
-            List<Game> games = command.Execute();
-            return Ok(games);
+            try
+            {
+                using (ApplicationContext db =  new ApplicationContext())
+                {
+                    List<Game> gms = db.Games.ToList();
+                    return Ok(gms);
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         //вывод данных по одной игре
@@ -25,9 +34,20 @@ namespace Platinum.WebAPI.Controllers
         //[Authorize]
         public IActionResult Get(int id)
         {
-            GetGameCommand command = new GetGameCommand();
-            GameInfo game = command.Execute(id);
-            return Ok(game);
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext ())
+                {
+                    Game gm = (from _gm in db.Games
+                               where _gm.Id == id
+                               select  _gm).FirstOrDefault();
+                    return Ok(gm);
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         //поиск
@@ -36,29 +56,40 @@ namespace Platinum.WebAPI.Controllers
         //[Authorize]
         public IActionResult Search([FromQuery] string searchString)
         {
-            SearchGameCommand command = new SearchGameCommand();
-            List<Game> games = command.Execute(searchString);
-            return Ok(games);
-        }
-
-        //добавление данных об игре
-        [HttpPost]
-        //[Authorize]
-        public IActionResult Create([FromBody] GameInfo game)
-        {
-            CreateGameCommand command = new CreateGameCommand();
-
-            if (command.Execute(game))
+            try
             {
-                return Ok();
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    List<Game> gms = (from _gm in db.Games
+                                      where _gm.Name.Contains(searchString)
+                                      select _gm).ToList();
+                    return Ok(gms);
+                }
             }
-            else
+            catch
             {
                 return BadRequest();
             }
         }
 
-        //TODO: - Метод Update
-        //TODO: - Метод Delete
+        //добавление данных об игре
+        [HttpPost]
+        //[Authorize]
+        public IActionResult Create([FromBody] Game game)
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    db.Games.Add(game);
+                    db.SaveChanges();
+                    return Ok();
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }
