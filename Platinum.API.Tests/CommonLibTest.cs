@@ -2,7 +2,7 @@ using CommonLibrary;
 
 namespace Platinum.API.Tests
 {
-    public class UnitTest1
+    public class CommonLibTest
     {
         [Fact]
         public void Hash_HelloWorld2023()
