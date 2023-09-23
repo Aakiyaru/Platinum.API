@@ -6,8 +6,10 @@ namespace CommonLibrary
 {
     public static class Hash
     {
-        /// Статический класс для хеширования строк по протоколу MD5
-        
+        /// <summary>
+        /// Функция получения хеша строки
+        /// </summary>
+        /// <param name="input"></param>
         public static string GetHash(string input)
         {
             var md5 = MD5.Create();
