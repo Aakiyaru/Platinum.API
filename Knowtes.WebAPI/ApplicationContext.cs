@@ -15,7 +15,7 @@ namespace Platinum.WebAPI
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=SQL6030.site4now.net;Initial Catalog=db_a9882b_database;User Id=db_a9882b_database_admin;Password=qweasd123");
+            optionsBuilder.UseSqlite($@"Data source=..\Knowtes.WebAPI\AppData\DataBase.db");
         }
 
     }

@@ -75,7 +75,7 @@ namespace Platinum.WebAPI.Controllers
         //добавление данных об игре
         [HttpPost]
         //[Authorize]
-        public IActionResult Create([FromBody] GameInfo game)
+        public IActionResult Create([FromBody] Game game)
         {
             try
             {
